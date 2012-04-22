@@ -1,0 +1,19 @@
++000: bids = 252, min = 0994, max = 1674, prc = 0075, min-sum = 074550, max-sum = 125550
++001: bids = 273, min = 0975, max = 1737, prc = 0072, min-sum = 070200, max-sum = 125064
++002: bids = 291, min = 0993, max = 1793, prc = 0070, min-sum = 069510, max-sum = 125510
++003: bids = 271, min = 0995, max = 1696, prc = 0074, min-sum = 073630, max-sum = 125504
++004: bids = 294, min = 1048, max = 1817, prc = 0069, min-sum = 072312, max-sum = 125373
++005: bids = 271, min = 1033, max = 1691, prc = 0074, min-sum = 076442, max-sum = 125134
++006: bids = 259, min = 0983, max = 1649, prc = 0076, min-sum = 074708, max-sum = 125324
++007: bids = 260, min = 0990, max = 1719, prc = 0073, min-sum = 072270, max-sum = 125487
++008: bids = 267, min = 0949, max = 1673, prc = 0075, min-sum = 071175, max-sum = 125475
+
++avg: bids = 270, min = 0995, max = 1716, prc = 0073, min-sum = 072755, max-sum = 125380
++std: bids = 013, min = 0027, max = 0053, prc = 0002, min-sum = 002144, max-sum = 000165
+
++runs             : 9
++bids             : 1000
++shares (min,max) : (1,10)
++price  (min,max) : (1,100)
++shares           : 5000
++amount           : 125000

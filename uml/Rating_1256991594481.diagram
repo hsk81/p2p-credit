@@ -1,0 +1,29 @@
+<XMI xmi.version="1.2"  xmlns:UML="org.omg.xmi.namespace.UML"  timestamp="October 31, 2009 1:21:13 PM CET" >
+<XMI.content>
+<UML:Diagram isVisible="false"  zoom="1.0"  name="Rating"  documentation="%3Cp+style%3D%22margin-top%3A+0%22%3E%0A++++++*+TODO%3A+Rating+of+possible+relations+%28PERSON-to-PERSON%2C+%0A++++++PERSON-to-ORGANIZATION%29%0A%3Cbr%3E%0A%3Cbr%3E*+%0A++++%3C%2Fp%3E"  xmi.id="DCE.2DC35F03-F52E-1D53-B3F7-DBEF18D4B23E" >
+<UML:GraphElement.position>
+     <XMI.field>0</XMI.field>
+     <XMI.field>0</XMI.field>
+</UML:GraphElement.position>
+<UML:GraphNode.size>
+     <XMI.field>734</XMI.field>
+     <XMI.field>574</XMI.field>
+</UML:GraphNode.size>
+<UML:Diagram.viewport>
+     <XMI.field>0</XMI.field>
+     <XMI.field>0</XMI.field>
+</UML:Diagram.viewport>
+<UML:DiagramElement.property>
+<UML:Property value="DCE.E11D5CF6-4844-ABD2-76A9-019D16B9757D"  key="netbeans-diagram-namespace" />
+<UML:Property value="DCE.E11D5CF6-4844-ABD2-76A9-019D16B9757D"  xmi.id="Property2_PEID"  key="netbeans-diagram-projectID" />
+</UML:DiagramElement.property>
+<UML:GraphElement.semanticModel>
+<UML:SimpleSemanticModelElement presentation=""  xmi.id="DCE.2DC35F03-F52E-1D53-B3F7-DBEF18D4B23E"  typeinfo="Class Diagram" />
+</UML:GraphElement.semanticModel>
+<UML:GraphElement.contained>
+</UML:GraphElement.contained>
+<UML:Diagram.owner>
+</UML:Diagram.owner>
+</UML:Diagram>
+</XMI.content>
+</XMI>

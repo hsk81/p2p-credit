@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% block main %}
+<script type="text/javascript">
+
+    var user = {
+        id     : '{{ person.id|default:0 }}'
+      , url    : '{% url people:json.PERSON person.id|default:0 %}'
+      , string : '{{ person|default:"" }}'
+    }
+
+    var project = {
+        url : '{% url prj:json.PROJECT "$0" %}'
+    }
+
+    var project_set = {
+        url : '{% url prj:extjs.PROJECT_SET %}'
+    }
+
+    var auction = {
+        url_view : '{% url auction:view.main "$0" %}'
+    }
+
+    var auction_set = {
+        url : '{% url auction:json.auctions_by_project %}'
+    }
+
+</script>
+
+<script type="text/javascript" src="{% url prj:all.js %}"></script>
+<script type="text/javascript" src="{% url prj:lhs.js %}"></script>
+<script type="text/javascript" src="{% url prj:rhs.js %}"></script>
+
+<script type="text/javascript">
+Ext.onReady(function() {
+
+    Ext.QuickTips.init();
+
+    var hBox = {
+
+        layout : 'hbox'
+      , frame  : true
+      , layoutConfig : {
+          align : 'stretch'
+      }
+
+      , items  : [{
+            layout : 'fit'
+          , flex   : 1
+          , items  : [pnlLhs]
+      },{
+            width : 5
+      },{
+            layout : 'fit'
+          , flex   : 2
+          , items  : [pnlRhs]
+      }]
+    }
+
+    var viewport = new Ext.Viewport({
+
+        layout : 'border'
+      , id     : 'viewportId'
+      
+      , items : [{
+            region : 'center'
+          , layout : 'fit'
+          , items  : [pnlPrj]
+
+      },{
+            region       : 'south'
+          , split        : true
+          , height       : 256
+          , minHeight    : 256
+          , collapsed    : false
+          , collapseMode : 'mini'
+          , hidden       : false
+          , layout       : 'fit'
+          , items        : [hBox]
+      }]
+    });
+
+    viewport.show ();
+
+});</script>
+{% endblock %}

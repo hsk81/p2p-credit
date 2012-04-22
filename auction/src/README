@@ -1,0 +1,105 @@
+Hallo Leute,
+
+Habe nun eine bessere Implementation des Auktions-Mechanismus eingehend betrachtet; und möchte nun euch die Implementation ein wenig erklären. ALSO: 
+
+ (1) Wir möchten einen Summe "amount" per Auktion sammlen und wir haben eine gewisse Anzahl "shares" zu vergeben. D.h. wir haben die folgenden globalen Bedingungen:
+
+  * z.B. amount = 125000, und
+  *      shares =   5000.
+
+So wir möchten also minimal amount=125000 CHF kassieren und sind bereit maximal shares=5000 zu verkaufen; falls wir mit weniger Aktien die gewünschte Summe aufbringen können ist es auch i.O.
+
+ (2) Pro Durchlauf simulieren wir 1000 bids mit den folgenden Bedingungen:
+
+  * Gewünschte Anzahl shares wird zufällig und uniform aus dem Intervall [1 ..  10] gewählt.
+  * Die Zahlungsbereitschaft wird zufällig und uniform aus dem Interfall [1 .. 100] gewählt.
+
+Die oben genannten Intervalle (und alle anderen Konstanten) können mittels Kommando-Zeilen Optionen (siehe Unten) verändert werden.
+
+ (3) Es werden 9 Durchläufe simuliert und ausgegeben; eine kleine Statistik wird angehängt. Die Ausgabe ist wie folgt zu interpretieren:
+
+..........................................................................................
++000: bids = 213, min = 0860, max = 1564, price = 0080, min-sum = 068800, max-sum = 125120
+.^^^  ^^^^        ^^^         ^^^         ^^^^^         ^^^^^^^           ^^^^^^^
+.<a>: <b>       , <c>       , <d>       , <e>         , <f>             , <g>
+..........................................................................................
++008: bids = 225, min = 0953, max = 1627, price = 0077, min-sum = 073381, max-sum = 125279
+..........................................................................................
++avg: bids = 234, min = 0935, max = 1639, price = 0076, min-sum = 071444, max-sum = 125256
++dev: bids = 009, min = 0039, max = 0036, price = 0001, min-sum = 001885, max-sum = 000184
+.^^^  ^^^^        ^^^         ^^^         ^^^^^         ^^^^^^^           ^^^^^^^
+.<a>: <b>       , <c>       , <d>       , <e>         , <f>             , <g>
+..........................................................................................
+
+LEGENDE:
+
+<a> idx     : nummer der simulation.
+<b> bids    : die anzahl bids, welche die gewünschte summe von amount=125000 zusammengebracht haben.
+<c> min     : die aggregierte summe der min-grenze des share - intervalles.
+<d> max     : die aggregierte summe der max-grenze des share - intervalles; diese kennzahl ist wichtig, da die Simulation zur zeit sich nur dieser ober-grenzen bedient (und die min-grenzen ignoriert). Im prinzip gibt diese Zahl an, wieviele shares der verfügbaren 5000 verkauft werden mussten um den gewünschten Geldbetrag von amount = 125000 zusammenzubrigen.
+<e> price   : der ermittelte preis; dies ist der minimal Preis der hier erfolgreichen 213 bids.
+<f> min-sum : gleich min * price = 068'800; soview geld wäre zusammengekommen, hätte man nur mit den min-grenzen des share - intervalles gearbeitet.
+<g> max-sum : gleich max * price = 125'120; soview geld kommt zusammen, falls man mit den max-grenzen des share - intervalles arbeitet. Dies ist dem gewünschten Betrag amount=125'000 sehr nahe!
+
+STATISTIK:
+
+avg : gibt den durchschnitt aller simulationen für die jeweilige spalte an.
+dev : gibt die standart-abweichung aller simulationen für die jeweilige spalte an.
+
+BEMERKUNGEN:
+
+ (1) Dass die ausgegebenen shares=5000 nicht alle verkauft werden, sondern nur eine untermenge genügt um den gewünschten Betrag von amount=125'000 zusammenzubringen, ist sicher ein Diskussionspunkt. Denn dadurch ist es nicht mehr möglich die erworbenen shares in relation zu den ausgegebenen shares zu setzen.
+
+ (2) Wie gesagt, werden zur zeit die min-grenzen der bids bzgl. der shares ignoriert; hier ist eine Diskussion nötig wie man am besten diese in den auktions-mechanismus integriert.
+
+ (3) Meine Darstellung hier ist ein wenig dürftig; deshalb müssen wir sicher noch einmal zusammensitzen, um alle Details des Auktions-Mechanismus nochmals genau besprechen. Ich werde eine kleine Präsentation vorbereiten, um auch die nötige mathematische notation vorzustellen, innerhalb welcher wir dann effektiv die vor- und nachteile des mechanismus besprechen können.
+
+ (4) Ihr könnt mit der angehänten auction.pyc datei ein wenig herumspielen (siehe auch unten); um ein gefühl für das ganze zu bekommen. Könnte mir Fragen dazu schicken, aber wie gesagt, eine detaillierte erörterung folgt diesen SA, nach der Sitzung mit Edi.
+
+PROGRAMM:
+
+$ python auction.pyc --help
+Usage: auction.py [options]
+
+Options:
+  -h, --help            show this help message and exit
+  -n RUNS, --runs=RUNS  number of simulation to run
+  -b BIDS, --bids=BIDS  number of bids per simulation run
+  --shares_min=SHARES_MIN
+                        minimum shares per bid
+  --shares_max=SHARES_MAX
+                        maximum shares per bid
+  --price_min=PRICE_MIN
+                        minimum price per share
+  --price_max=PRICE_MAX
+                        maximum price per share
+  --shares=SHARES       maximum number of available shares for emissions
+  --amount=AMOUNT       minimum amount of money to be raised
+  -p, --print-runs      determines if the simulation runs are printed
+  -i, --print-info      determines if the simulation info is printed
+  -s, --print-stat      determines if the simulation statistics is printed
+$ 
+$ python auction.pyc --runs=9
++000: bids = 213, min = 0860, max = 1564, price = 0080, min-sum = 068800, max-sum = 125120
++001: bids = 239, min = 0947, max = 1648, price = 0076, min-sum = 071972, max-sum = 125248
++002: bids = 236, min = 0964, max = 1647, price = 0076, min-sum = 073264, max-sum = 125172
++003: bids = 237, min = 0929, max = 1629, price = 0077, min-sum = 071533, max-sum = 125433
++004: bids = 248, min = 0976, max = 1690, price = 0074, min-sum = 072224, max-sum = 125060
++005: bids = 241, min = 0975, max = 1693, price = 0074, min-sum = 072150, max-sum = 125282
++006: bids = 231, min = 0876, max = 1632, price = 0077, min-sum = 067452, max-sum = 125664
++007: bids = 236, min = 0938, max = 1624, price = 0077, min-sum = 072226, max-sum = 125048
++008: bids = 225, min = 0953, max = 1627, price = 0077, min-sum = 073381, max-sum = 125279
+
++avg: bids = 234, min = 0935, max = 1639, price = 0076, min-sum = 071444, max-sum = 125256
++dev: bids = 009, min = 0039, max = 0036, price = 0001, min-sum = 001885, max-sum = 000184
+
++runs             : 9
++bids             : 1000
++shares (min,max) : (1,10)
++price  (min,max) : (1,100)
++shares           : 5000
++amount           : 125000
+
+
+Gruss, Hasan.
+
