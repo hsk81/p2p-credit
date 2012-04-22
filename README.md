@@ -7,35 +7,41 @@ There are two problems with P2P funding: First, how do you ensure that a success
 
 There are multiple approaches to solve the first problem:
 
-(a) You don't address is at all, and simply trust that the bidders will live up to their commitment, which means they would transfer actual money from their bank account to the credit takers account. If they fail to do so within a set time period, you could punish them by banning such bidders from the platform.
+1. You don't address is at all, and simply trust that the bidders will live up to their commitment, which means they would transfer actual money from their bank account to the credit takers account. If they fail to do so within a set time period, you could punish them by banning such bidders from the platform.
 
-(b) Another approach would be, that they would be forced at bid time to send the money. The company running the P2P infrastructure would act as a bank and deliver the collected amount.
+2. Another approach would be, that they would be forced at bid time to send the money. The company running the P2P infrastructure would act as a bank and deliver the collected amount.
 
-There are several issues with this solution: (i) The company, running the P2P funding infrastructure, would be required to have a banking license and also be a single point of failure (trust, security, regulation), (ii) the technological implementation of the financial transaction at bid time would be expensive and (iii) also eliminate certain desired features of the system like privacy and anonymity of the investors and credit takers.
+  There are several issues with this solution:
 
-To solve all this problems we need a novel approach which leads us the the following proposals:
+  1. The company, running the P2P funding infrastructure, would be required to have a banking license and also be a single point of failure (trust, security, regulation), 
+  2. the technological implementation of the financial transaction at bid time would be expensive and 
+  3. also eliminate certain desired features of the system like privacy and anonymity of the investors and credit takers.
 
-(c) Instead of using traditional currency people would rely on an internet currency called *Bitcoins* (see http://en.wikipedia.org/wiki/Bitcoin). At bid time the investors would be required to send Bitcoins to the P2P company.
+  To solve all this problems we need a novel approach which leads us the the following proposals:
 
-This would eliminate issue (b-ii), since Bitcoins rely on a fully distributed P2P protocol outflanking any current currency transaction system and therefore reducing implementation costs. It would also eliminate issue (b-iii) since Bitcoins allow anonymous sender and receiver addresses, in stark contrast with current bank accounts.
+3. Instead of using traditional currency people would rely on an internet currency called **Bitcoins** (see http://en.wikipedia.org/wiki/Bitcoin). At bid time the investors would be required to send Bitcoins to the P2P company.
 
-Still issue (b-i) would pose a huge risk the system, since any entity with a monopoly on security could shut down the company, running the P2P funding infrastructure. This leads us to the final proposal:
+  This would eliminate issue (2.2), since Bitcoins rely on a fully distributed P2P protocol outflanking any current currency transaction system and therefore reducing implementation costs. It would also eliminate issue (2.3) since Bitcoins allow anonymous sender and receiver addresses, in stark contrast with current bank accounts.
 
-(d) The idea is to *eliminate* the company, running the P2P funding infrastructure, by turning the company itself into a distributed P2P software!
+  Still issue (2.1) would pose a huge risk to the system, since any entity with a monopoly on security could shut down the company, running the P2P funding infrastructure. This leads us to the final proposal:
+
+4. The idea is to *eliminate* the company, running the P2P funding infrastructure, by turning the company itself into a distributed P2P software!
 
 Each participant of the network would run the software on their own machines, and would bid and ask for credit. The underlying technology enabling such a novel approach would be Bitcoins.
 
 In detail it would work in the following manner:
 
-  (1) credit receiver RCV would set up a project P for auction with an expiration date E, and would state his willingness to accept the credit amount A at a certain interest rate R between a *minimal* MIN and *maximal* MAX threshold;
+  * Credit receiver **RCV** would set up a project **P** for auction with an expiration date **E**, and would state his willingness to accept the credit amount **A** at a certain interest rate **R** between a *minimal* **MIN** and *maximal* **MAX** threshold;
 
-  (2) if the rates MIN and MAX would appeal to investors, each of these credit senders SNDs would bid a certain amount S for the project P;
+    * it should also possible to distribute *shares* instead of taking a credit in exchange for interest;
 
-  (3) each amount S would be split among *all* participants (playing here collectively the role of a *trusted* entity) of the credit funding network;
+  * if the rates **MIN** and **MAX** would appeal to investors, each of these credit senders **SND**s would bid a certain amount **S** for the project **P**;
 
-  (4.1) once the auction expires, because of the date E or because the MIN threshold has been reached, the *network* would collect all bids from the participants, transfer the winning bids (with a cumulative amount A) to the receiver RCV and the loosing bids to their originators;
+  * each amount **S** would be split among *all* participants (playing here collectively the role of a *trusted* entity) of the credit funding network;
 
-  (4.2) or if the auction fails because the collected amount C was less then the targeted amount A or because the actual interest rate R was higher than the maximal rate MAX, then the *network* would collect and transfer all bids to their originators.
+  * once the auction expires, because of the date **E** or because the **MIN** threshold has been reached, the *network* would collect all bids from the participants, transfer the winning bids (with a cumulative amount A) to the receiver **RCV** and the loosing bids to their originators; or
+
+  * if the auction fails because the collected amount **C** was less then the targeted amount **A** or because the actual interest rate **R** was higher than the maximal rate **MAX**, then the *network* would collect and transfer all bids to their originators.
 
 Each trusted node could charge a fee of trust, and the network would prefer nodes with a lower fee. Each node would have an opinion about the trustworthiness of other nodes, and nodes with a low level of trust would be less likely chosen for holding Bitcoins for others or for being asked about the trustworthiness of others.
 
