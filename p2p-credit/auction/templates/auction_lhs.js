@@ -464,20 +464,15 @@ var tbLow = ['->', {
         var formPanel = Ext.getCmp('formBidId');
         formPanel.el.mask('Please wait', 'x-mask-loading');
         
-        formPanel.getForm ().submit({
-            url: bid.url_post 
-                
-                + String.format ("?user-id={0}", user.id)
-                + String.format ("&auction-id={0}", auction.id)
+        function _onSuccess (form, action) {
+            formPanel.el.unmask ();
+            formPanel.fireEvent ('submitted', action.result.id)
+        }
 
-          , success: function (form, action) {
-                formPanel.fireEvent ('submitted', action.result.id)
-                formPanel.el.unmask ();
-            }
+        function _onFailure (form, action) {
+            formPanel.el.unmask();
 
-          , failure: function (form, action) {
-                formPanel.el.unmask();
-
+            if (action) {
                 switch (action.result.resinfo) {
                     case "AUCTION_EXPIRED":
                         msg = 
@@ -501,17 +496,30 @@ var tbLow = ['->', {
                             "Saving the provided bid has failed, due to an "   +
                             "unknown reason."
                 }
-
-                Ext.MessageBox.show ({
-                    title         : 'Bidding failed'
-                  , msg           : msg
-                  , closable      : false
-                  , width         : 480
-                  , buttons       : Ext.MessageBox.OK
-                  , icon          : Ext.MessageBox.INFO
-                }) //@TOOD: Improve 'design'!
-
+            } else {
+                msg = 
+                    "Saving the provided bid has failed, due to an "   +
+                    "unknown reason."
             }
+
+            Ext.MessageBox.show ({
+                title : 'Bidding failed'
+              , msg : msg
+              , closable : false
+              , width : 480
+              , buttons : Ext.MessageBox.OK
+              , icon : Ext.MessageBox.INFO
+            }) //@TOOD: Improve 'design'!
+
+        }
+
+        formPanel.getForm ().submit ({
+            url: bid.url_post
+                + String.format ("?user-id={0}", user.id)
+                + String.format ("&auction-id={0}", auction.id)
+
+          , success : _onSuccess
+          , failure : _onFailure
         });
 
     }

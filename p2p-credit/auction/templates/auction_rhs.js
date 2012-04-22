@@ -173,8 +173,8 @@ var pagingToolbar = {
                 var idx = ptb.selectInfo.row
                 sm.selectRange (idx, idx)
 
-             // Ext.getCmp('tblAuctionId').fireEvent ('refresh')
-             // Ext.getCmp('tblStatisticsId').fireEvent ('refresh')
+                Ext.getCmp('tblAuctionId').fireEvent ('refresh')
+                Ext.getCmp('tblStatisticsId').fireEvent ('refresh')
 
                 ptb.selectInfo.ref = ptb.selectInfo.ref - 1
             }
@@ -185,14 +185,7 @@ var pagingToolbar = {
             var ptb = Ext.getCmp ('pagingGridBidsId')
 
             Ext.Ajax.request ({
-                url: String.replace (bid.url_page, "$0", id)
-                   + String.format ("?user-id={0}", user.id)
-                   + String.format ("&auction-id={0}", auction.id)
-                   + String.format ("&page-size={0}", ptb.pageSize)
-                   + String.format ("&sort={0}", grid.sortInfo.field)
-                   + String.format ("&dir={0}", grid.sortInfo.direction)
-
-              , success: function (xhr, opts) {
+                success: function (xhr, opts) {
                     var result = Ext.decode(xhr.responseText);
 
                     ptb.selectInfo = result.page_info
@@ -214,6 +207,13 @@ var pagingToolbar = {
                       , buttons       : Ext.MessageBox.OK
                     }) //@TODO!
                 }
+
+              , url: bid.url_page.replace ("$0", id)
+                    + String.format ("?user-id={0}", user.id)
+                    + String.format ("&auction-id={0}", auction.id)
+                    + String.format ("&page-size={0}", ptb.pageSize)
+                    + String.format ("&sort={0}", grid.sortInfo.field)
+                    + String.format ("&dir={0}", grid.sortInfo.direction)
             })
 
             Ext.MessageBox.show ({
@@ -268,8 +268,8 @@ var gridBids = {
                 }
             });
 
-         // Ext.getCmp('tblAuctionId').fireEvent ('refresh')
-         // Ext.getCmp('tblStatisticsId').fireEvent ('refresh')
+            Ext.getCmp('tblAuctionId').fireEvent ('refresh')
+            Ext.getCmp('tblStatisticsId').fireEvent ('refresh')
         }
     }
 }

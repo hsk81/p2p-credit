@@ -59,6 +59,7 @@ FIXTURE_DIRS = (
 )
 
 INSTALLED_APPS = (
+    'django_pdb',
 
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -71,5 +72,4 @@ INSTALLED_APPS = (
     'svc', 
     'people', 'org', 'com', 'edu',
     'prj', 'auction' ,
-
 )
