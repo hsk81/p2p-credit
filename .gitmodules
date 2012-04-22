@@ -1,3 +1,6 @@
 [submodule "p2p-credit/media/ico/silk.git"]
 	path = p2p-credit/media/ico/silk.git
 	url = git@github.com:hsk81/famfamfam-silk-icons.git
+[submodule "p2p-credit/media/lib/extjs.git"]
+	path = p2p-credit/media/lib/extjs.git
+	url = git@github.com:hsk81/extjs.git
