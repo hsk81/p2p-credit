@@ -34,7 +34,7 @@ def init_auction (auction_no):
                 project = prj,
                 start_date  = prj.start_date + dt0,
                 expiry_date = prj.start_date + dt1,
-                target_amount = "%s" % random.randint (2250,2750),
+                target_amount = "%s" % random.randint (750,1250),
                 target_rate = "%.2f" % (8.00 + 0.25 * idx))
 
             print auction

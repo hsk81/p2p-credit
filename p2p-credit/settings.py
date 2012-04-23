@@ -77,7 +77,10 @@ SESSION_COOKIE_NAME = 'sid.'
 SESSION_COOKIE_SECURE = False
 
 TEMPLATE_DIRS = (os.path.join (SITE_ROOT, 'templates/'),)
-FIXTURE_DIRS = (os.path.join (SITE_ROOT, 'fixtures/'),)
+FIXTURE_DIRS = (
+    os.path.join (SITE_ROOT, 'fixtures/'),
+    os.path.join (SITE_ROOT, 'fixtures/apps'),
+)
 
 ## SENTRY_DSN = 'http://%s:%s@localhost:9000/1' % (
 ##    '...', '...'
