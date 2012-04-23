@@ -1,10 +1,19 @@
-from prj.models    import *
+__author__ = "hsk81"
+__date__ = "$Apr 23, 2012 10:15:15 AM$"
+
+################################################################################
+################################################################################
+
+from prj.models import *
 from people.models import *
 
 from datetime import date
 from datetime import timedelta
 
 import random
+
+################################################################################
+################################################################################
 
 def init (project_no = 5):
 
@@ -22,12 +31,14 @@ def init_prj (project_no):
         ps_size = ps.count ()
 
         prj = PROJECT.objects.create (
-            name        = 'PRJ-%04X' % random.randint (0, 1 << 16),
+            name = 'PRJ-%04X' % random.randint (0, 1 << 16),
             description = 'This is a short description: ..',
-            contact     = ps [idx % ps_size],
-            start_date  = date.today () + dt0,
-            end_date    = date.today () + dt1)
+            contact = ps [idx % ps_size],
+            start_date = date.today () + dt0,
+            end_date = date.today () + dt1)
 
         for p in ps: prj.team.add (p)
         print prj
-    
+
+################################################################################
+################################################################################
